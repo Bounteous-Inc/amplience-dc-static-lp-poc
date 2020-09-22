@@ -1,0 +1,31 @@
+{
+    "$schema": "http://bigcontent.io/cms/schema/v1/schema#",
+    "id": "https://bounteous-inc.github.io/amplience-dc-static-lp-poc/schemas/promo-tile.json",
+    "title":"Roundel",
+    "description": "An additional layer which can be added to an image composite",
+    "allOf": [
+        { "$ref": "http://bigcontent.io/cms/schema/v1/core#/definitions/content" }
+    ],
+    "type": "object",
+    "properties": {
+        "image": { "$ref": "http://bigcontent.io/cms/schema/v1/core#/definitions/image-link" },
+        "text": {
+            "type": "string",
+            "title": "Tile Text",
+            "description": "The text for the tile. can be as simple or rich as needed",
+            "ui:extension": {
+				"url": "https://amplience.github.io/dc-extension-rich-text/index.html"
+            }	
+        },
+        "cta": {
+			"title": "Call to action button (optional)",
+			"description": "Add button",
+			"type": "object",
+			"allOf": [
+				{
+				"$ref": "https://dev-solutions.s3.amazonaws.com/DynamicContentTypes/Accelerators/link.json"
+				}
+			]
+		}
+    }
+}
