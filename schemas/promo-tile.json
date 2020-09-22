@@ -1,8 +1,8 @@
 {
     "$schema": "http://bigcontent.io/cms/schema/v1/schema#",
     "id": "https://bounteous-inc.github.io/amplience-dc-static-lp-poc/schemas/promo-tile.json",
-    "title":"Roundel",
-    "description": "An additional layer which can be added to an image composite",
+    "title":"Promo Tile",
+    "description": "A ptomo tile that can contain am image, a text and a CTA. Usually displayed in a grid",
     "allOf": [
         { "$ref": "http://bigcontent.io/cms/schema/v1/core#/definitions/content" }
     ],
