@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>
 <body>
-
-// include the Dynamic Content Extensions SDK
-
 <script src="https://unpkg.com/dc-extensions-sdk/dist/dc-extensions-sdk.umd.js"></script>
 
-<div>HTML Static Landing page UI Extension</div>
 <div>
   <p class="areWeInSync">HTML generated: <span class="yesOrNo"></span></p>
 </div>
@@ -24,6 +20,7 @@
         console.log("locales", locales);
 
         this.currentValue = "";
+        //can be used to diaplay if the HTNK is updated / stored or not. Or maybe a buttton like "Generate HTML" :/ ?
         this.syncVisual = document.querySelector(".areWeInSync .yesOrNo");
 
         this.setCurrentValue()
@@ -34,21 +31,18 @@
             //Call teh Delivery API to get the rendered HTML content
             this.getRawHtmlFromDeliveryAPI(deliveryId)
             .then(data => {
-              console.log("currentValue", this.currentValue);
-              console.log("newValue", data);
-              console.log("isEqual", this.currentValue.toString == data.toString);
-              if (this.currentValue.toString == data.toString){
-                this.syncVisual.innerHTML = "Yep!";
-              } else {
-                this.syncVisual.innerHTML = "Nope!";
                 //Assign HTML generated value
                 this.updateFieldValue(data);
-              }
             });
           })
         })
         .finally(() => {
-          this.sdk.frame.startAutoResizer();
+          //Hiding the frame for now. 
+          //This will basically always force updating the rendered hHTML field
+          //It will also force the "save" button to be active all the time as a side effect
+          // Another side effect for now is that it will not display generic errors (i.e Extension init )
+          this.sdk.frame.stopAutoResizer();
+          this.sdk.frame.setHeight(0);
         })
       }
 
@@ -56,7 +50,7 @@
         try {
           await this.sdk.field.setValue(value);
         } catch (err) {
-          // the field value is not set to the new value, write a warning on the console
+          //The field value is not set to the new value, write a warning on the console
           console.log(err.message);
         }
       }
