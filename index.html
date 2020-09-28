@@ -35,9 +35,9 @@
         //       console.log("deliveryId", this.currentDeliveryId);
         //     })
 
-        const fieldValue = await this.sdk.field.getValue();
+        const fieldValue = this.sdk.field.getValue();
         console.log("fieldValue", fieldValue);
-        const fieldValue2 = await this.sdk.component.getValue();
+        const fieldValue2 = this.sdk.component.getValue();
         console.log("fieldValue2", fieldValue2);
 
         this.setCurrentValue()
