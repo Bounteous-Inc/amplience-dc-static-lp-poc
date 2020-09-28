@@ -8,14 +8,14 @@
 
 <div>HTML Static Landing page UI Extension</div>
 <div>
-  <textarea id="rawHtml" name="rawHtml"></textarea>
+  <textarea class="rawHtml" name="rawHtml"></textarea>
 </div>
 
 <script>
 
     class Extension {
       constructor(sdk) {
-        this.rawHtmlInput = document.querySelectorAll("#rawHtml");
+        this.rawHtmlInput = document.querySelector(".rawHtml");
 
         this.sdk = sdk;
         console.log("params", this.sdk.params);
@@ -44,7 +44,8 @@
             this.getRawHtmlFromDeliveryAPI(deliveryId)
             .then(data => {
               console.log("data", data); 
-              this.rawHtmlInput.value = data
+              this.rawHtmlInput.value = data;
+              console.log("data2", this.rawHtmlInput.value); 
             });
           })
         })
