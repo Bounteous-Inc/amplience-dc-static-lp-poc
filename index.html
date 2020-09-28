@@ -25,10 +25,11 @@
         this.currentValue = "";
         this.currentDeliveryId = "";
         //Get Content Item
-        
-        this.assignCurrentDeliveryId();
-        console.log("deliveryId", this.currentDeliveryId);
 
+        this.assignCurrentDeliveryId()
+            .finally(() => {
+              console.log("deliveryId", this.currentDeliveryId);
+            })
 
         this.setCurrentValue()
             .finally(() => {
