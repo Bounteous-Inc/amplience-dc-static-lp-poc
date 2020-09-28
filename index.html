@@ -26,24 +26,24 @@
         this.currentDeliveryId = "";
         //Get Content Item
 
-        // this.assignCurrentDeliveryId()
-        //     .then(() => {
-        //       this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
-        //         .then(data => console.log("data", data));
-        //     })
-        //     .finally(() => {
-        //       console.log("deliveryId", this.currentDeliveryId);
-        //     })
+          // this.assignCurrentDeliveryId()
+          //     .then(() => {
+          //       this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
+          //         .then(data => console.log("data", data));
+          //     })
+          //     .finally(() => {
+          //       console.log("deliveryId", this.currentDeliveryId);
+          //     })
 
         
 
         this.setCurrentValue()
         .then(() => { 
           this.assignCurrentDeliveryId()
-        })
-        .then(() => {
-          this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
-            .then(data => console.log("data", data));
+            .then(() => {
+            this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
+              .then(data => console.log("data", data));
+          })
         })
         .then(() => {
           console.log("deliveryId", this.currentDeliveryId);
