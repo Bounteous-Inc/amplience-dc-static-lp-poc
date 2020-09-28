@@ -23,12 +23,11 @@
         console.log("locales", locales);
 
         this.currentValue = "";
-
+        this.deliveryId = "";
         //Get Content Item
-        const contentItem = sdk.contentItem.getCurrent();
-        const deliveryId = contentItem.deliveryId;
-        console.log("contentItem", contentItem);
-        console.log("deliveryId", deliveryId);
+        
+        this.assignCurrentDeliveryId();
+        console.log("deliveryId", this.deliveryId);
 
 
         this.setCurrentValue()
@@ -57,6 +56,17 @@
           }
         } catch (err) {
           console.log(err);
+        }
+      }
+
+      async assignCurrentDeliveryId(){
+        try {
+          const contentItem = await this.sdk.contentItem.getCurrent();
+          if (typeof contentItem !== "undefined") {
+            this.currentDeliveryKey = contentItem.deliveryId;
+          }
+        } catch (err) {
+          console.log(err)
         }
       }
 
