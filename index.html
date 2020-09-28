@@ -31,6 +31,9 @@
               console.log("deliveryId", this.currentDeliveryId);
             })
 
+        this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
+        .then(data => console.log("data", data));
+
         this.setCurrentValue()
             .finally(() => {
               //this.initializeInput();
@@ -72,6 +75,13 @@
         }
       }
 
+      async getRawHtmlFromDeliveryAPI(deliveryId) 
+      {
+        let response = await fetch(`https://c1.adis.ws/v1/content/gaptest/content-item/${deliveryId}?template=acc-template-static-landing-page&locale=,en-*,*`);
+        let data = await response.blob();
+        return data;
+      }
+   
       // initializeInput() {
       //   const { min = 0, max = 10, value = 0 } = this.sdk.params.instance;
 
