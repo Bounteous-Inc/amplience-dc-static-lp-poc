@@ -36,14 +36,14 @@
             .then(data => {
               console.log("currentValue", this.currentValue);
               console.log("newValue", data);
-              console.log("isEqual", this.currentValue == data);
-              if (this.currentValue === data){
+              console.log("isEqual", this.currentValue.toString == data.toString);
+              if (this.currentValue.toString == data.toString){
                 this.syncVisual.innerHTML = "Yep!";
               } else {
                 this.syncVisual.innerHTML = "Nope!";
+                //Assign HTML generated value
+                this.updateFieldValue(data);
               }
-              //Assign HTML generated value
-              this.updateFieldValue(data);
             });
           })
         })
