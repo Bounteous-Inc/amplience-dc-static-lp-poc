@@ -15,7 +15,7 @@
 
     class Extension {
       constructor(sdk) {
-        this.rawHtmlInput = document.querySelector("#rawHtml");
+        this.rawHtmlInput = document.querySelectorAll("#rawHtml");
 
         this.sdk = sdk;
         console.log("params", this.sdk.params);
@@ -26,24 +26,26 @@
         this.currentDeliveryId = "";
         //Get Content Item
 
-          // this.assignCurrentDeliveryId()
-          //     .then(() => {
-          //       this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
-          //         .then(data => console.log("data", data));
-          //     })
-          //     .finally(() => {
-          //       console.log("deliveryId", this.currentDeliveryId);
-          //     })
+        // this.assignCurrentDeliveryId()
+        //     .then(() => {
+        //       this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
+        //         .then(data => console.log("data", data));
+        //     })
+        //     .finally(() => {
+        //       console.log("deliveryId", this.currentDeliveryId);
+        //     })
 
         
 
         this.setCurrentValue()
         .then(() => { 
           this.assignCurrentDeliveryId()
-            .then(() => {
-            this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
-              .then(data => this.rawHtmlInput.value = data);
-          })
+        })
+        .then(() => {
+          this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
+            .then(data => {
+              console.log("data", data); 
+              this.rawHtmlInput.value = data});
         })
         .then(() => {
           console.log("deliveryId", this.currentDeliveryId);
@@ -69,6 +71,7 @@
           console.log("savedValue", savedValue);
           if (typeof savedValue !== "undefined") {
             this.currentValue = savedValue;
+            this.rawHtmlInput.value = savedValue;
           }
         } catch (err) {
           console.log(err);
