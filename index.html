@@ -8,33 +8,23 @@
 
 <div>HTML Static Landing page UI Extension</div>
 <div>
-  <textarea class="rawHtml" name="rawHtml"></textarea>
+  <p class="areWeInSync">HTML generated: <span class="yesOrNo"></span></p>
 </div>
 
 <script>
 
     class Extension {
       constructor(sdk) {
-        this.rawHtmlInput = document.querySelector(".rawHtml");
 
         this.sdk = sdk;
+
+        //Debugging to check paramaters
         console.log("params", this.sdk.params);
         const locales = this.sdk.locales;
         console.log("locales", locales);
 
         this.currentValue = "";
-        this.currentDeliveryId = "";
-        //Get Content Item
-
-        // this.assignCurrentDeliveryId()
-        //     .then(() => {
-        //       this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
-        //         .then(data => console.log("data", data));
-        //     })
-        //     .finally(() => {
-        //       console.log("deliveryId", this.currentDeliveryId);
-        //     })
-        
+        this.syncVisual = document.querySelector(".areWeInSync .yesOrNo");
 
         this.setCurrentValue()
         .then(() => { 
@@ -47,8 +37,12 @@
               console.log("currentValue", this.currentValue);
               console.log("newValue", data);
               console.log("isEqual", this.currentValue == data);
+              if (this.currentValue === data){
+                this.syncVisual.innerHTML = "Yep!";
+              } else {
+                this.syncVisual.innerHTML = "Nope!";
+              }
               //Assign HTML generated value
-              this.rawHtmlInput.value = data;
               this.updateFieldValue(data);
             });
           })
@@ -98,32 +92,6 @@
         let data = await response.text();
         return data;
       }
-   
-      // initializeInput() {
-      //   const { min = 0, max = 10, value = 0 } = this.sdk.params.instance;
-
-      //   Object.assign(this.slider, {
-      //     min,
-      //     max,
-      //     value
-      //   });
-
-      //  // set the slider value to the saved value if the content item has been previously saved 
-      //  if (this.currentValue != 0) 
-      //      this.slider.value = this.currentValue;
-
-      //   // get the label to show the current slider value
-      //   this.inputValue.innerHTML = this.slider.value;
-      //   this.slider.onchange = event => this.onInputChange(event);
-
-      //  }
-
-
-      // onInputChange({ target: { value } }) {
-      //   this.inputValue.innerHTML = value;
-      //   this.updateFieldValue(value);
-      // }
-
     }
 
 
@@ -131,7 +99,7 @@
     try {
       new Extension(await dcExtensionsSdk.init())
     } catch (e) {
-      document.body.innerHTML = 'Failed to connect'
+      document.body.innerHTML = 'Failed to initialize the Extension'
     }
 })()
 
