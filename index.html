@@ -23,11 +23,11 @@
         console.log("locales", locales);
 
         this.currentValue = "";
-        this.deliveryId = "";
+        this.currentDeliveryId = "";
         //Get Content Item
         
         this.assignCurrentDeliveryId();
-        console.log("deliveryId", this.deliveryId);
+        console.log("deliveryId", this.currentDeliveryId);
 
 
         this.setCurrentValue()
@@ -63,7 +63,7 @@
         try {
           const contentItem = await this.sdk.contentItem.getCurrent();
           if (typeof contentItem !== "undefined") {
-            this.currentDeliveryKey = contentItem.deliveryId;
+            this.currentDeliveryId = contentItem.deliveryId;
           }
         } catch (err) {
           console.log(err)
