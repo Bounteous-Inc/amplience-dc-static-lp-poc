@@ -7,23 +7,28 @@
 <script src="https://unpkg.com/dc-extensions-sdk/dist/dc-extensions-sdk.umd.js"></script>
 
 <div>HTML Static Landing page UI Extension</div>
+<div>
+  <textarea id="rawHtml" name="rawHtml"></textarea>
+</div>
 
 <script>
 
     class Extension {
       constructor(sdk) {
+        const rawHtmlInput = document.querySelectorAll("#rawHtml");
+
         this.sdk = sdk;
-        console.log(this.sdk.params);
+        console.log("params", this.sdk.params);
         const locales = this.sdk.locales;
-        console.log(locales);
+        console.log("locales", locales);
 
         this.currentValue = "";
 
         //Get Content Item
         const contentItem = sdk.contentItem.getCurrent();
         const deliveryId = contentItem.deliveryId;
-        console.log(contentItem);
-        console.log(deliveryId);
+        console.log("contentItem", contentItem);
+        console.log("deliveryId", deliveryId);
 
 
         this.setCurrentValue()
@@ -45,9 +50,10 @@
       async setCurrentValue() {
         try {
           const savedValue = await this.sdk.form.getValue();
-          console.log(savedValue);
+          console.log("savedValue", savedValue);
           if (typeof savedValue !== "undefined") {
             this.currentValue = savedValue;
+            rawHtmlInput.value = savedValue;
           }
         } catch (err) {
           console.log(err);
