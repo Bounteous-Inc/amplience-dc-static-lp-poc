@@ -29,10 +29,11 @@
         this.assignCurrentDeliveryId()
             .finally(() => {
               console.log("deliveryId", this.currentDeliveryId);
+              this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
+                .then(data => console.log("data", data));
             })
 
-        this.getRawHtmlFromDeliveryAPI(this.currentDeliveryId)
-        .then(data => console.log("data", data));
+        
 
         this.setCurrentValue()
             .finally(() => {
