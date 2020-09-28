@@ -48,9 +48,7 @@
           })
         })
         .finally(() => {
-          //force the height of the UI extemsion to be 0 (hidden)
-          this.sdk.frame.stopAutoResizer();
-          this.sdk.frame.setHeight(0)
+          this.sdk.frame.startAutoResizer();
         })
       }
 
