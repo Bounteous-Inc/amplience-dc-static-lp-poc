@@ -79,7 +79,7 @@
       async getRawHtmlFromDeliveryAPI(deliveryId) 
       {
         let response = await fetch(`https://c1.adis.ws/v1/content/gaptest/content-item/${deliveryId}?template=acc-template-static-landing-page&locale=,en-*,*`);
-        let data = await response.blob();
+        let data = await response.text();
         return data;
       }
    
