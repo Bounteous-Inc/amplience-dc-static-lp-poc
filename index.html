@@ -35,17 +35,21 @@
         //       console.log("deliveryId", this.currentDeliveryId);
         //     })
 
-        
+        const fieldValue = await this.sdk.field.getValue();
+        console.log("fieldValue", fieldValue);
+        const fieldValue2 = await this.sdk.component.getValue();
+        console.log("fieldValue2", fieldValue2);
 
         this.setCurrentValue()
         .then(() => { 
+          //Get the deliveryId of teh current page contentType
           this.assignCurrentDeliveryId()
           .then(deliveryId => {
+            //Call teh Delivery API to get the rendered HTML content
             this.getRawHtmlFromDeliveryAPI(deliveryId)
             .then(data => {
-              console.log("data", data); 
+              //Assign HTML generated value
               this.rawHtmlInput.value = data;
-              console.log("data2", this.rawHtmlInput.value); 
             });
           })
         })
@@ -55,14 +59,14 @@
         })
       }
 
-      // async updateFieldValue(value) {
-      //   try {
-      //     await this.sdk.field.setValue(parseInt(value, 10));
-      //   } catch (err) {
-      //     // the field value is not set to the new value, write a warning on the console
-      //     console.log(err.message);
-      //   }
-      // }
+      async updateFieldValue(value) {
+        try {
+          await this.sdk.field.setValue(data);
+        } catch (err) {
+          // the field value is not set to the new value, write a warning on the console
+          console.log(err.message);
+        }
+      }
 
       async setCurrentValue() {
         try {
