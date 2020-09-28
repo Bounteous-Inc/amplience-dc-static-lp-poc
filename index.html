@@ -15,7 +15,7 @@
 
     class Extension {
       constructor(sdk) {
-        const rawHtmlInput = document.querySelectorAll("#rawHtml");
+        this.rawHtmlInput = document.querySelectorAll("#rawHtml");
 
         this.sdk = sdk;
         console.log("params", this.sdk.params);
@@ -53,7 +53,7 @@
           console.log("savedValue", savedValue);
           if (typeof savedValue !== "undefined") {
             this.currentValue = savedValue;
-            rawHtmlInput.value = savedValue;
+            this.rawHtmlInput.value = savedValue;
           }
         } catch (err) {
           console.log(err);
