@@ -71,7 +71,7 @@
 
       async setCurrentValue() {
         try {
-          const savedValue = await this.sdk.form.getValue();
+          const savedValue = await this.sdk.field.getValue();
           if (typeof savedValue !== "undefined") {
             //do nothing but keep track of current value
             this.currentValue = savedValue;
