@@ -35,10 +35,8 @@
         //       console.log("deliveryId", this.currentDeliveryId);
         //     })
 
-        const fieldValue = this.sdk.field.getValue();
-        console.log("fieldValue", fieldValue);
-        const fieldValue2 = this.sdk.component.getValue();
-        console.log("fieldValue2", fieldValue2);
+        this.getFieldValues();
+        
 
         this.setCurrentValue()
         .then(() => { 
@@ -66,6 +64,13 @@
           // the field value is not set to the new value, write a warning on the console
           console.log(err.message);
         }
+      }
+
+      async getFieldValues() {
+        const fieldValue = await this.sdk.field.getValue();
+        console.log("fieldValue", fieldValue);
+        const fieldValue2 = await this.sdk.component.getValue();
+        console.log("fieldValue2", fieldValue2);
       }
 
       async setCurrentValue() {
