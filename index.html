@@ -64,6 +64,7 @@
           const contentItem = await this.sdk.contentItem.getCurrent();
           if (typeof contentItem !== "undefined") {
             this.currentDeliveryId = contentItem.deliveryId;
+            console.log("deliveryId1", contentItem.deliveryId);
           }
         } catch (err) {
           console.log(err)
