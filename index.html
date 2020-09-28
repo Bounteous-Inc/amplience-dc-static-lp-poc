@@ -20,7 +20,7 @@
         this.currentValue = "";
 
         //Get Content Item
-        const contentItem = await sdk.contentItem.getCurrent();
+        const contentItem = sdk.contentItem.getCurrent();
         const deliveryId = contentItem.deliveryId;
         console.log(contentItem);
         console.log(deliveryId);
