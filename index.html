@@ -84,9 +84,15 @@
         console.log("locale", locale);
         console.log("fetch URL", `${prefix}${deliveryId}?template=${template}&locale=${locale}`);
         //TODO: consolidate fetching errors with better Promise handling
-        let response = await fetch(`${prefix}${deliveryId}?template=${template}&locale=${locale}`);
-        let data = await response.text();
-        return data;
+        let response = await (await (fetch(`${prefix}${deliveryId}?template=${template}&locale=${locale}`)
+          .then(data => {
+            return data.text()
+          })
+          .catch(err => {
+            console.log('Error: ', err)
+          })
+        ))
+        return response
       }
     }
 
