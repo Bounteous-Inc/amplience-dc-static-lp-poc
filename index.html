@@ -78,6 +78,10 @@
 
       async getRawHtmlFromDeliveryAPI(prefix, deliveryId, template, locale) 
       {
+        console.log("prefix", prefix);
+        console.log("deliveryID", deliveryId);
+        console.log("template", template);
+        console.log("locale", locale);
         //TODO: consolidate fetching errors with better Promise handling
         let response = await fetch(`${prefix}${deliveryId}?template=${template}&locale=${locale}`);
         let data = await response.text();
