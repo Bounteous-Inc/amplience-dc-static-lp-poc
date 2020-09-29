@@ -80,10 +80,15 @@
 
       async getRawHtmlFromDeliveryAPI(prefix, deliveryId, template, locale) 
       {
+
         try {
-          let response = await fetch(`${prefix}${deliveryId}?template=${template}&locale=${locale}`)
-          .then(response => (data = await response.text()));
-          return data;
+          let response = await fetch(`${prefix}${deliveryId}?template=${template}&locale=${locale}`);
+          try {
+            let data = await response.text();
+            return data;
+          } catch (err) {
+            console.log(err)
+          }
         } catch (err) {
           console.log(err)
         }
