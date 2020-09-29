@@ -82,7 +82,9 @@
       {
         let response = await fetch(`${prefix}${deliveryId}?template=${template}&locale=${locale}`);
         let data = await response.text();
-        return data;
+        if (data) {
+          return data;
+        }
       }
     }
 
