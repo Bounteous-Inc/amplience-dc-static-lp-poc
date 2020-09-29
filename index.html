@@ -14,9 +14,7 @@
 
         this.sdk = sdk;
 
-        //Debugging to check paramaters
-        console.log("params", this.sdk.params);
-
+        //Getting Extension paramaters (with defaults)
         const { prefix = "https://c1.adis.ws/v1/content/gaptest/content-item/", template = "acc-template-static-landing-page", locale = ",en-*,*" } = this.sdk.params.instance;
 
         this.currentValue = "";
@@ -80,18 +78,10 @@
 
       async getRawHtmlFromDeliveryAPI(prefix, deliveryId, template, locale) 
       {
-
-        try {
-          let response = await fetch(`${prefix}${deliveryId}?template=${template}&locale=${locale}`);
-          try {
-            let data = await response.text();
-            return data;
-          } catch (err) {
-            console.log(err)
-          }
-        } catch (err) {
-          console.log(err)
-        }
+        //TODO: consolidate fetching errors with better Promise handling
+        let response = await fetch(`${prefix}${deliveryId}?template=${template}&locale=${locale}`);
+        let data = await response.text();
+        return data;
       }
     }
 
