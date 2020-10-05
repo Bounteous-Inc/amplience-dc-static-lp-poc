@@ -1,0 +1,53 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"$id": "https://gap.com/html-editor.json",
+
+	"title": "Raw HTML",
+	"description": "WYSIWYG HTML Editor",
+
+	"allOf": [
+		{
+			"$ref": "http://bigcontent.io/cms/schema/v1/core#/definitions/content"
+		}
+	],
+	
+	"type": "object",
+	"properties": {
+        "titleOverride": {
+			"title": "Page title override (SEO)",
+			"description": "If set, overrides the original page title",
+			"type": "string",
+			"minLength": 0,
+			"maxLength": 100
+		},
+		"metaDescription": {
+			"title": "Page description (SEO)",
+			"description": "If set, overrides the original meta description for the page",
+			"type": "string",
+			"minLength": 0,
+			"maxLength": 200
+		},
+		"rawHtml": {
+			"title": "HTML Editor",
+			"ui:extension": {
+				"url": "https://cms-extensions.apps.cfcommerce.dev.azeus.gaptech.com/extensions/dc-extension-html-editor/index.html",
+				"params": { "colors" : ["#000001", "#000000", "#2e2e2e", "rgba(0, 0, 0, 0.8)",
+										"#575757", "#ffffff", "#fffffe", "#f5f7f8",
+										"#edf4ff", "#f0fff4","#f7f7f7", "#d8d8d8",
+										"#ffeef0", "#22863a", "#dd191f", "#001489"],
+							"fonts" : {
+									"fontFamilySrc": [
+										["FuturaBT", "FuturaBT/FuturaBT-Book"],
+										["HeldaneText-Regular", "HeldaneDesktopFonts/HeldaneText-Regular"]
+									],
+							"fontsList": {
+								"FuturaBT, Arial, sans-serif": "FuturaBT / Primary Font",
+								"HeldaneText-Regular, Arial, sans-serif": "HeldaneText / Secondary Font"
+								}
+							}
+						}
+			}
+		}
+	},
+	"propertyOrder": ["titleOverride", "metaDescription", "htmlEditor"]
+}

@@ -15,7 +15,31 @@
             "description": "The text for the tile. can be as simple or rich as needed",
             "ui:extension": {
 				"url": "https://amplience.github.io/dc-extension-rich-text/index.html"
-            }	
+            },
+            "toolbar": {
+                "layout": [
+                    { "type": "button", "toolName": "undo" },
+                    { "type": "button", "toolName": "redo" },
+                    {
+                        "type": "group",
+                        "children": [
+                            { "type": "button", "toolName": "strong" },
+                            { "type": "button", "toolName": "em" }
+                        ]
+                    },
+                    {
+                        "type": "dropdown",
+                        "toolNames": [
+                            "heading_1",
+                            "heading_2",
+                            "heading_3",
+                            "heading_4",
+                            "heading_5",
+                            "heading_6"
+                        ]
+                    }
+                ]
+            }
         },
         "cta": {
 			"title": "Call to action button (optional)",
