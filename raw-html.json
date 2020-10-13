@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$id": "https://dev.gap.com/cms/schema/v1/static/html-editor.json",
+	"$id": "https://bounteous-inc.github.io/amplience-dc-static-lp-poc/raw-html.json",
 
 	"title": "Raw HTML",
 	"description": "WYSIWYG HTML Editor",
