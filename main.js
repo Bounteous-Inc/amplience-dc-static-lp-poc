@@ -31467,6 +31467,8 @@ const App = props => {
         locale = ',en-*,*'
       } = sdk.params.installation; // await setCurrentValue();
 
+      console.log("installation params", sdk.params.installation);
+
       const deliveryId = await assignCurrentDeliveryId();
       const htmlData = await getRawHtmlFromDeliveryAPI(contentDeliveryPrefix, deliveryId, template, locale);
       await updateFieldValue(htmlData);
