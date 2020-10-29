@@ -31468,6 +31468,8 @@ const App = props => {
       } = sdk.params.installation; // await setCurrentValue();
 
       console.log("installation params", sdk.params.installation);
+      console.log("stageEnv", sdk.stagingEnvironment);
+      console.log("visualisation", sdk.visualisation);
 
       const deliveryId = await assignCurrentDeliveryId();
       const htmlData = await getRawHtmlFromDeliveryAPI(contentDeliveryPrefix, deliveryId, template, locale);
