@@ -2025,7 +2025,7 @@ __webpack_require__.r(__webpack_exports__);
 
 function getNavData(brand, market, country) {
   // https://navigation-service-stage.apps.cfcommerce.dev.azeus.gaptech.com/
-  const navUrl = `/hierarchy?brand=${brand}&market=${market}&country=${country}`;
+  const navUrl = `https://cms-extensions-test.apps.cfcommerce.dev.azeus.gaptech.com/hierarchy?brand=${brand}&market=${market}&country=${country}`;
   console.log('fetch URL', navUrl); // eslint-disable-line
 
   return fetch(navUrl).then(data => data.json());
@@ -2075,10 +2075,10 @@ const findCid = (node, cid) => {
         vse,
         cid,
         type,
-        env
+        previewDomain
       } = previewLinkData;
-      window.open(`https://pr-${brandName[brand]}-preview.apps.cfcommerce.${env}.azeus.gaptech.com/browse/${type}.do?cid=${cid}&contentApi=${vse}`, '_blank');
-      console.log("URLURLURL", `https://pr-${brandName[brand]}-preview.apps.cfcommerce.${env}.azeus.gaptech.com/browse/${type}.do?cid=${cid}&contentApi=${vse}`);
+      window.open(`https://${previewDomain}/browse/${type}.do?cid=${cid}&contentApi=${vse}`, '_blank');
+      console.log("previewBtnUrl", `https://${previewDomain}/browse/${type}.do?cid=${cid}&contentApi=${vse}`);
     }; // dont wait for the sdk so local works.
     // otherwise it will wait forever on amplience events
 
@@ -2092,10 +2092,9 @@ const findCid = (node, cid) => {
         brand = 'at',
         market = 'us',
         country = 'us',
-        env = 'prod'
+        previewDomain = `pr-${brandName[brand]}-preview.apps.cfcommerce.prod.azeus.gaptech.com`
       } = ((_sdkInstance$params = sdkInstance.params) === null || _sdkInstance$params === void 0 ? void 0 : _sdkInstance$params.instance) || {};
-      console.log("iinstance params", sdkInstance.params.instance);
-
+      console.log("PARAMS", sdkInstance.params.instance);
       Promise.all([getNavData(brand, market, country), sdkInstance.contentItem.getCurrent()]).then(async info => {
         const [nav, contentItem] = info;
         const {
@@ -2112,7 +2111,7 @@ const findCid = (node, cid) => {
           vse,
           brand,
           market,
-          env,
+          previewDomain,
           type: found && found.type || 'info',
           cid: deliveryKey
         };
